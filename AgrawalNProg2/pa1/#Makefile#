@@ -1,0 +1,25 @@
+GCC		= gcc -g -O0 -Wall -Wextra -std=gnu99C
+SOURCEA	= graph01.c
+CSOURCEB	= IntList.c
+CSOURCES	= ${CSOURCEA} ${CSOURCEB}
+SOURCES		= graph01.c intList.c Makefile
+EXECBINB	= graph01
+EXECBINC	= intList
+OBJECTA		= ${CSOURCEA:.c=.o}
+OBJECTB		= ${CSOURCEB:.c=.o}
+SUBMIT		= submit /afs/cats.ucsc.edu/classes/cmps101-avg.f13 pa1
+
+all : ${EXECBINB}
+
+${EXECBINB} : ${CSOURCEB} ${OBJECTB} ${CSOURCEA} ${OBJECTA}
+	${GCC} -o $@ ${CSOURCEB} ${CSOURCEA}
+
+%.o : %.c
+	cid + $<
+	${GCC} -c $<
+
+ci : ${SOURCES}
+	cid + ${SOURCES}
+
+submit : ${SOURCES} Makefile README
+	${SUBMIT} ${SOURCES} Makefile README

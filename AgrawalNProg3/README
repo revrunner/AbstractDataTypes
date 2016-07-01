@@ -1,0 +1,17 @@
+//Nirav Agrawal
+//nkagrawa
+
+insertionSort.c = takes in array and sorts it in place.
+insertionSort.h = contains the function prototypes for insertionSort.c
+heap.c = takes in array and sorts it recursively, but in place.
+heap.h = contains the function prototypes for heap.c
+heapSort.c = takes in array and calls the heapsort function in heap.c to sort the array.
+heapSort.h = contains the function prototypes for heapSort.c
+heapDriver.c = runs all of the ADT operations in heap.c and tests them.
+sortComp.c = reads in a file or user input of an array and sorts it by insertion and heap. Then prints the runtime for both sorting methods.
+sortPrint.c = reads in a file or user input of an array and sorts it by insertion and heap. Prints out the array before and after sorting for both methods.
+Makefile = compiles sortPrint and sortComp.
+
+Observations: When a larger data set is sorted, heapSort runs WAY faster than insertionSort. For sample size of 50,000, the runtime for each sorting method are:
+Insertion sort took 2.042260 seconds.
+Heap sort took 0.016285 seconds.

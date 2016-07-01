@@ -1,0 +1,8 @@
+Nirav Agrawal
+nkagrawa
+
+How To Compile: run make all
+
+Usage: graph01.c input files (if no input files, read from stdin)
+
+Testing: used the test files provided by our goldy teacher.

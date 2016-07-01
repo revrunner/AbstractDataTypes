@@ -1,0 +1,18 @@
+//Nirav Agrawal
+//nkagrawa
+
+main.c - contains the main body of the program. Takes in one file and creates the graph from
+	the file as well as calls bfs each query and prints out the search results.
+
+intList.c - contains all of the adt operations used by the main.c. Contains the node 
+	structure as well as the bfs search.
+
+intList.h - containts the headers for all of the adt operations to be included in the main.c
+
+Makefile - compiles the main program and creates an executable for the main program as well
+	as the driver program.
+
+README - name describes it well enough.
+
+intListDriver.c - copied from the main.c but it also shows that each method in the intList.c
+	class file runs properly and according to its necessary functions.

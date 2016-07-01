@@ -1,0 +1,9 @@
+//Nirav Agrawal
+//nkagrawa
+
+List.h: defines operations for ADT
+List.c: uploads file and uses files for ADT
+Store.c: takes in file and outputs correct syntax
+Makefile: compiles
+myinclude: defines some parameters
+Listdr.c: test operations for ADT

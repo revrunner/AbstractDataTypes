@@ -1,0 +1,12 @@
+//Nirav Agrawal
+//nkagrawa
+
+libraryList.h - contains all of the pre and post conditions for the methods for the ADT
+
+libraryList.c - contains all of the code for the ADT operations as specified in the .h file.
+
+Makefile - compiles the main program and driver and libraryList.c file and creates two executables, one for the main and one for the driver to be used by the user.
+
+main.c - contains the main code and takes in two files. first fill will store the books into the hash table and the second will do searches for the book titles.
+
+driver.c - does the same thing as the main.c file except it also prints out the hash talbe in its entirety after all of the books have been inserted into the table.

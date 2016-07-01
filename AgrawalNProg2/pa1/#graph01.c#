@@ -1,0 +1,118 @@
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+#include <assert.h>
+#include "intList.h"
+
+typedef struct Edge* Edge_p;
+
+struct Edge
+{
+  int from;
+  int to;
+  double weight;
+};
+
+Edge_p parseEdge(char* line)
+{
+  Edge_p newE;
+  int numFields;
+  numFields = sscanf(line, " %d %d %1g %*s", &newE->from, &newE->to, (float*)&newE->weight);
+  if (numFields < 2 || numFields > 3)
+    {
+      printf("Bad edge: %s", line);
+      exit (1);
+    }
+  if (numFields == 2)
+    {
+      newE->weight = 0.0;
+    }
+  return newE;
+}
+
+int parseN (char* line){
+  int n = atoi (line);
+  return n;
+}
+
+int loadEdge (FILE *input, IntList* adjVertices){
+  char line[1024];
+  char* fgetsRetn;
+  int num = 0;
+  fgetsRetn = fgets(line, 1024, input);
+  while (fgetsRetn == line){
+    Edge_p e = parseEdge (line);
+    adjVertices[e->from] = intCons(e->to, adjVertices[e->from]);
+    num++;
+    fgetsRetn = fgets(line, 1024, input);
+  }
+  return num;
+}
+
+IntList* initEdges (int n){
+  IntList adjVertices = intCons(n+1, ;
+  for (int i = 1; i <= n; i++){
+    adjVertices[i] = IntNil;
+  }
+  return adjVertices;
+}
+
+
+
+void inputparser (FILE *input, char *filename){
+  char buffer[1024];
+  IntList *array;
+  int m, n;
+  IntList* adjVertices;
+
+  char *linepos = fgets(buffer, sizeof buffer, input);
+  linepos = strchr (buffer, '\n');
+  if (linepos == NULL){
+    fprintf (stderr, "%s: unterminated line\n", filename);
+  }
+  else{
+    *linepos = '\0';
+  }
+  linepos = strdup (buffer);
+  assert (linepos != NULL);
+  n = parseN(linepos);
+  free(linepos);
+  printf("n = %d\n", n);
+  adjVertices = initEdges(n);
+  m = loadEdges(input, adjVertices);
+  printf("m = %d\n", m);
+  for (int i = 1; i<= n; i++){
+    char* vert = toString_IntList(adjVertices[i]);
+    printf("%d\t%s\n", i, vert);
+  }
+  freeEdges(adjVertices, n);
+}
+
+void fileinputparser (char *filename){
+  FILE *input = fopen (filename, "r");
+  if (input == NULL){
+    fprintf (stderr, filename);
+  }
+  else{
+    printf("Opened %s for input. \n", filename);
+    inputparser (input, filename);
+    if (fclose (input)) fprintf (stderr, "Problem closing %s\n", filename);
+  };
+}
+
+int main (int argc, char **argv){
+  if (argc <2){
+    inputparser (stdin, "-");
+  }
+  else{
+    int argi;
+    for (argi = 1; argi < argc; ++argi){
+      if (strcmp (argv[argi], "=") == 0){
+	inputparser (stdin, "-");
+      }
+      else{
+	fileinputparser (argv[argi]);
+      };
+    };
+  };
+}
